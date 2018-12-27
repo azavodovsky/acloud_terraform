@@ -1,1 +1,12 @@
-Më-Š{-jw²—«~Šæjw¢s©z{-iÉ®‹â²*'ŠxËZ–[^®¶Ÿ¢¹´×]u"{-jYZÈ›•í»à)hè"¶·©¢È­¢¼šÛ¶êoj»®‰ŸŠW­zºÚ~ŠæµûÚ®Çb²ÔnÊ&™©İµêëiú+š)â¶×«­§è®f©¦\
+# Test instances performance on Openstack:
+
+## How to use:
+
+- Install locally Ansible(2.7.4);
+- Install locally Terraform(0.11.11);
+- Clone repository and add terraform.tfvars from dist file;
+
+Run command: 
+```bash
+$ terraform init
+$ terraform apply
