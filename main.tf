@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "artic-instance-1" {
   security_groups = ["${openstack_compute_secgroup_v2.arctic-secgroup.name}"]
 
    provisioner "local-exec" {
- command = "sleep 120;ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -s -i \"${openstack_compute_instance_v2.artic-instance-1.access_ip_v4},\" --key-file=~/.ssh/id_pub ansible/artic-playbook.yml"
+ command = "sleep 30;ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -s -i \"${openstack_compute_instance_v2.artic-instance-1.access_ip_v4},\" --key-file=~/.ssh/id_pub ansible/artic-playbook.yml"
 
   }
 
@@ -23,7 +23,7 @@ resource "openstack_compute_instance_v2" "artic-instance-2" {
 
 
      provisioner "local-exec" {
- command = "sleep 120;ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -s -i \"${openstack_compute_instance_v2.artic-instance-1.access_ip_v4},\" --key-file=~/.ssh/id_pub ansible/artic-playbook.yml"
+ command = "sleep 30;ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -s -i \"${openstack_compute_instance_v2.artic-instance-1.access_ip_v4},\" --key-file=~/.ssh/id_pub ansible/artic-playbook.yml"
 
   }
 
