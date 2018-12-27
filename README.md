@@ -7,6 +7,6 @@
 - Clone repository and add terraform.tfvars from dist file;
 
 Run command: 
-
-           - terraform init
-           - terraform apply
+```bash
+$ terraform init
+$ terraform apply
