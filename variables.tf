@@ -16,3 +16,10 @@ variable "instance_type" {
 variable "ssh_key"{
   description = "SSH key for provision"
 }
+variable "ssh_key_file" {
+  description = "SSH key for provision"
+}
+variable "instance_zone" {
+  description = "availability_zone"
+  default = "SV1"
+}

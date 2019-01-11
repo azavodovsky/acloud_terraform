@@ -15,6 +15,6 @@ terraform {
 }
 resource "openstack_compute_keypair_v2" "arctic-keypair" {
   name       = "arctic-keypair"
-  public_key = "${var.ssh_key}"
+  public_key = "${file(var.ssh_key_file)}"
 }
 

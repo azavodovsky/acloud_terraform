@@ -1,0 +1,9 @@
+---
+- name: Update apt
+  apt: update_cache=yes
+
+- name: Install iperf-server
+  apt: pkg=iperf state=latest
+
+- name: start server iperf
+  shell: iperf --server --daemon &

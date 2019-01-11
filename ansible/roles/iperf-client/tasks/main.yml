@@ -1,0 +1,39 @@
+---
+- name: Update apt
+  apt: update_cache=yes
+
+- name: Install iperf-server
+  apt: pkg=iperf state=latest
+
+- name: Install mtr
+  apt: pkg=mtr state=latest
+
+- name: set iperf server
+  set_fact: iperf_server="192.168.199.44"
+
+- name: set output base
+  set_fact: output_base="{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}_{{ iperf_server }}.out"
+
+- name: set iperf out
+  set_fact: iperf_out="iperf_{{ output_base }}"
+
+- name: set mtr out
+  set_fact: mtr_out="mtr_{{ output_base }}"
+
+- name: check connection to iperf server
+  wait_for: host={{ iperf_server }} port=5001
+
+- name: debug connection
+  debug: msg="connect to iperf server successful"
+
+- name: start client iperf
+  shell: "iperf --client {{ iperf_server }} >> {{ iperf_out }}"
+
+- name: start client mtr
+  shell: "mtr --report {{ iperf_server }} -c 10 >> {{ mtr_out }}"
+
+- name: grab iperf output
+  fetch: src={{ iperf_out }} dest=results/ flat=yes
+
+- name: grab mtr output
+  fetch: src={{ mtr_out }} dest=results/ flat=yes

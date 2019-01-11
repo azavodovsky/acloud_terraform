@@ -1,0 +1,10 @@
+ - hosts: all
+   user: debian
+   roles:
+       - cpu_io
+       - iperf-client
+
+       
+         
+
+        

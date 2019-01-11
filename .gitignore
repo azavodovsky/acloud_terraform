@@ -4,3 +4,5 @@
 *.tfstate.*
 **/.terraform/*
 *.tfvars
+ansible/*.retry
+ansible/results/*

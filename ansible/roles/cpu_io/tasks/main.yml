@@ -1,0 +1,30 @@
+---
+- name: Update apt
+  apt: update_cache=yes
+
+- name: Sysbench
+  apt: pkg=sysbench
+
+- name: set output base
+  set_fact: output_base="{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.out"
+
+- name: set cpu out
+  set_fact: cpu_out="cpu_{{ output_base }}"
+
+- name: set io out
+  set_fact: io_out="io_{{ output_base }}"
+
+- name: start sysbench cpu
+  shell: "sysbench --test=cpu --cpu-max-prime=20000 run >> {{ cpu_out }}"
+
+- name: prepare file to io test
+  shell: sysbench --test=fileio --file-total-size=100MB prepare
+
+- name: start sysbench io
+  shell: "sysbench --test=fileio --file-total-size=100MB --file-test-mode=rndrw --init-rng=on --max-time=300 --max-requests=0 run >> {{ io_out }}"
+
+- name: grab cpu output
+  fetch: src={{ cpu_out }} dest=results/ flat=yes
+
+- name: grab io output
+  fetch: src={{ io_out }} dest=results/ flat=yes
