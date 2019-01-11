@@ -2,6 +2,7 @@
 
 echo "Start executing terraform script"
 
+terraform init
 terraform apply -auto-approve
 terraform destroy -auto-approve
 

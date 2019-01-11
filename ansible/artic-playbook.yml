@@ -1,9 +1,0 @@
-#only for test
- - hosts: all	
-   user: debian
-   roles:
-       - nginx
-       
-         
-
-        
